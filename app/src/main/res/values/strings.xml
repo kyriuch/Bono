@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Data gatherer</string>
+    <string name="speed_value_mask">%.1f km/h</string>
+    <string name="distance_mask">%.1f km</string>
+    <string name="time">TIME</string>
+    <string name="max_speed_km_h">MAX SPEED (KM/H)</string>
+    <string name="speed_km_h">SPEED (KM/H)</string>
+    <string name="distance_km">DISTANCE (KM)</string>
+    <string name="start_session">Start Session</string>
+    <string name="finish_session">Finish Session</string>
+</resources>
