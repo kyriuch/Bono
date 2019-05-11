@@ -41,6 +41,7 @@ public class MainActivityController implements SensorEventListener, LocationList
 
     void StartSession() {
         started = true;
+        lastLocation = null;
 
         // reset values
         steps = 0;
@@ -89,8 +90,8 @@ public class MainActivityController implements SensorEventListener, LocationList
 
                         intervalData.setCurrentTime(String.format("%02d:%02d:00", hours, minutes));
                         intervalData.setCurrentDistance(mainActivityModel.TravelledDistance.get());
-                        intervalData.setCurrentAltitude((int) lastLocation.getAltitude());
-                        intervalData.setCurrentSpeed(lastLocation.getSpeed());
+                        intervalData.setCurrentAltitude(lastLocation != null ? (int) lastLocation.getAltitude() : 0);
+                        intervalData.setCurrentSpeed(lastLocation != null ? lastLocation.getSpeed() : 0);
                         intervalData.setCurrentSteps(steps);
 
                         intervalDatas.add(intervalData);
@@ -109,6 +110,9 @@ public class MainActivityController implements SensorEventListener, LocationList
         started = false;
         timerTask.join();
         dataTask.interrupt();
+
+        if(lastLocation == null)
+            return;
 
         float expiredTime = (SystemClock.elapsedRealtime() / 1000f) - startTimestamp;
 
